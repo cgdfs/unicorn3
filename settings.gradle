@@ -1,0 +1,3 @@
+rootProject.name = 'spring-reactive-api'
+
+include '01-resource-nodb'
