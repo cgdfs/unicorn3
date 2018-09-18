@@ -4,3 +4,13 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-webflux')
 	compile('org.projectlombok:lombok')
 }
+
+sonarqube {
+	properties {
+		property "sonar.projectName", "unicorn3"
+		property "sonar.projectKey", "cgdfs_unicorn3"
+		property "sonar.organization", "cgdfs-github"
+		property "sonar.host.url", "https://sonarcloud.io"
+		property "sonar.login", "68072331cf908a5f01a52c1fd9a7f25a56e81c85"
+	}
+}

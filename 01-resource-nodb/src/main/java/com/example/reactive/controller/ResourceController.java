@@ -19,42 +19,9 @@ public class ResourceController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ResourceController.class);
 
-    @PostMapping(path = "/resources", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<MappedResponse> saveResources(@RequestBody JsonNode requestBody) {
-        LOGGER.info("saveResources: /resources: {} events to process", requestBody.size());
-        return Flux.fromStream(StreamSupport.stream(requestBody.spliterator(), false))
-                .map(ResourceUtil::mapToResource)
-                .map(ResourceUtil::saveResource);
-    }
-
-
     @GetMapping("/resources/{id}")
     public Mono<Resource> getResource(@PathVariable Long id) {
         LOGGER.info("getResource: /resources/{}", id);
         return Mono.just(ResourceUtil.makeResource(id));
-    }
-
-    @GetMapping(path = "/resources", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<Resource> getResources() {
-        LOGGER.info("getResources: /resources");
-        return getAllResources();
-    }
-
-    @GetMapping(path = "/resourcesNonReactive")
-    public Flux<Resource> getResourcesNotReactive() {
-        LOGGER.info("getResourcesNotReactive: /resourcesNonReactive");
-        return getAllResources();
-    }
-
-    private Flux<Resource> getAllResources() {
-        int noOfResources = getNoOfResources();
-        LOGGER.info("Returning {} resources", noOfResources);
-        return Flux.range(1, noOfResources)
-                .map(Long::new)
-                .map(ResourceUtil::makeResource);
-    }
-
-    private int getNoOfResources() {
-        return new Random().nextInt(25)+5;
     }
 }
