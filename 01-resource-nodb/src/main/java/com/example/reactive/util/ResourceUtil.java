@@ -30,6 +30,10 @@ public class ResourceUtil {
 
     private static void seeIfExceptionalCase(Long id) {
         if (id % 19 == 0)
-            throw new RuntimeException("Excptional case: " + id);
+            throw new BusinessException("Exceptional case: " + id);
+    }
+
+    private ResourceUtil() {
+        //Do nothing contructor
     }
 }
