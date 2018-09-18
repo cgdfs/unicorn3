@@ -23,7 +23,7 @@ public class ResourceUtil {
         try {
             seeIfExceptionalCase(id);
             sleep(2000);
-            LOGGER.info("Resource {} processed", id);
+            LOGGER.info("Resource {} processed for COCK-1", id);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
